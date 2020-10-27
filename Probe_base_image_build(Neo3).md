@@ -30,6 +30,8 @@
     ```
     sudo apt-get update
     sudo apt-get -y upgrade
+    # add update to use traditional interface names (e.g. wlan0)
+    sudo echo extraargs=net.ifnames=0 >> /boot/armbianEnv.txt
     sudo sync; sudo reboot
     ```
 10. SSH back in to the probe and add a number of required packages:
