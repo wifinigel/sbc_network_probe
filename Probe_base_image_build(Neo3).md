@@ -26,36 +26,56 @@
 
 8. Drop the SSH session and establish a new session using the new username.
 
-9. Perform an update of all packages before adding any new software, followed by a reboot of the probe:
+9. The NetworkManager package can be very problematic for networking, so we need to disable it. Follow these steps to disable it and create a static configuration file for eth0:
+
+    a. Create a static config file to ensure eth0 gets an IP address from DHCP
+
+    ```
+    sudo sh -c "printf '\n\nallow-hotplug eth0 \niface eth0 inet dhcp\n' >> /etc/network/interfaces"
+    ```
+
+    b. Disable NetworkManager
+    ```
+    sudo systemctl stop NetworkManager
+    sudo systemctl disable NetworkManager
+    ```
+
+    c. Reboot:
+
+    ```
+    sudo reboot
+    ```
+
+10. Perform an update of all packages before adding any new software, followed by a reboot of the probe:
     ```
     sudo apt-get update
     sudo apt-get -y upgrade
     # add update to use traditional interface names (e.g. wlan0)
-    sudo echo extraargs=net.ifnames=0 >> /boot/armbianEnv.txt
+    sudo sh -c "echo 'extraargs=net.ifnames=0' >> /boot/armbianEnv.txt"
     sudo sync; sudo reboot
     ```
-10. SSH back in to the probe and add a number of required packages:
+11. SSH back in to the probe and add a number of required packages:
     ```
     sudo apt-get update
     sudo apt-get -y install docker docker.io 
     sudo apt-get -y install cockpit cockpit-docker
     ```
-11. Start Cockpit:
+12. Start Cockpit:
     ```
     sudo systemctl start cockpit
     ```
-12. Login to Cockpit using your everyday account (check the checkbox for privileged tasks) and view Cockpit GUI (inc Containers menu item on left)
+13. Login to Cockpit using your everyday account (check the checkbox for privileged tasks) and view Cockpit GUI (inc Containers menu item on left)
 
     http://ip_address:9090/
 
-13. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
+14. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
     ```
     sudo docker pull openspeedtest/latest
     sudo docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
     ```
     (Check in Containers section of Cockpit - new openspeedtest container now available)
 
-    Browse to htp://ip_address and see Openspeedtest GUI
+    Browse to http://ip_address and see Openspeedtest GUI
 
 
 
