@@ -1,4 +1,4 @@
-# SBC TFTPD
+# SBC tftp Server
 
 A simple TFTP server (mainly for lab use) that allows download and upload of files. Please remember that tftp is insecure and should only be used for brief, internal network applications such as in a pre-staging or in a lab environment. __Do not deploy in prod environments.__ 
 
