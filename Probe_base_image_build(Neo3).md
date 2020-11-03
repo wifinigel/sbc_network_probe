@@ -22,7 +22,13 @@
 7. During this initial login, you will be prompted to provide:
     a. New root password
     b. optionally configure your locale
-    c. Create an "every day" user account that should be used to administer the probe
+    c. Create an "every day" user account that should be used to administer the probe (e.g. dockeruser)
+
+8. Create a Linux group for docker and add your everyday user to the group. This ensures that docker commands can be executed by your everyday users and avoid using the root user for executing docker commands:
+    ```
+    sudo groupadd docker
+    sudo usermod -aG docker dockeruser
+    ```
 
 8. Drop the SSH session and establish a new session using the new username.
 
@@ -70,8 +76,8 @@
 
 14. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
     ```
-    sudo docker pull openspeedtest/latest
-    sudo docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
+    docker pull openspeedtest/latest
+    docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
     ```
     (Check in Containers section of Cockpit - new openspeedtest container now available)
 
