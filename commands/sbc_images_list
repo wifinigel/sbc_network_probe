@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# script to list all images
+echo "Images on this host:"
+
+docker images

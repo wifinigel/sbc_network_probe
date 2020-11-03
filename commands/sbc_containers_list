@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# script to list all containers
+echo "Containers on this host:"
+
+docker container ls -a
