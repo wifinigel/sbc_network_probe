@@ -24,15 +24,15 @@
     b. optionally configure your locale
     c. Create an "every day" user account that should be used to administer the probe (e.g. dockeruser)
 
-8. Create a Linux group for docker and add your everyday user to the group. This ensures that docker commands can be executed by your everyday users and avoid using the root user for executing docker commands:
+8. Create a Linux group for docker and add your everyday user to the group. This ensures that docker commands can be executed by your everyday user and avoid using the root user for executing docker commands:
     ```
     sudo groupadd docker
     sudo usermod -aG docker dockeruser
     ```
 
-8. Drop the SSH session and establish a new session using the new username.
+9. Drop the SSH session and establish a new session using the new username.
 
-9. The NetworkManager package can be very problematic for networking, so we need to disable it. Follow these steps to disable it and create a static configuration file for eth0:
+10. The NetworkManager package can be very problematic for networking, so we need to disable it. Follow these steps to disable it and create a static configuration file for eth0:
 
     a. Create a static config file to ensure eth0 gets an IP address from DHCP
 
@@ -52,7 +52,7 @@
     sudo reboot
     ```
 
-10. Perform an update of all packages before adding any new software, followed by a reboot of the probe:
+11. Perform an update of all packages before adding any new software, followed by a reboot of the probe:
     ```
     sudo apt-get update
     sudo apt-get -y upgrade
@@ -60,21 +60,21 @@
     sudo sh -c "echo 'extraargs=net.ifnames=0' >> /boot/armbianEnv.txt"
     sudo sync; sudo reboot
     ```
-11. SSH back in to the probe and add a number of required packages:
+12. SSH back in to the probe and add a number of required packages:
     ```
     sudo apt-get update
     sudo apt-get -y install docker docker.io 
     sudo apt-get -y install cockpit cockpit-docker
     ```
-12. Start Cockpit:
+13. Start Cockpit:
     ```
     sudo systemctl start cockpit
     ```
-13. Login to Cockpit using your everyday account (check the checkbox for privileged tasks) and view Cockpit GUI (inc Containers menu item on left)
+14. Login to Cockpit using your everyday account (check the checkbox for privileged tasks) and view Cockpit GUI (inc Containers menu item on left)
 
     http://ip_address:9090/
 
-14. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
+15. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
     ```
     docker pull openspeedtest/latest
     docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
