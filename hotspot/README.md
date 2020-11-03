@@ -2,7 +2,23 @@
 
 A ready made hotspot for your SBC probe.
 
-To build it yourself, run the following on your Docker host:
+## Pre-requisites
+
+Build the host machine as recommended is [this document][main_index].
+
+Also, connect eth0 to an Internet connected Ethernet switch port, and insert a wireless NIC that supports AP mode in to the USB port.
+
+## Pull & Run From Dockerhub
+
+On a host machine simply enter this command:
+
+```
+docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
+```
+
+## Build Your Own Image From the Dockerfile
+
+To build the image yourself, run the following on your Docker host:
 
 ```
 git clone https://github.com/wifinigel/sbc_network_probe.git
@@ -23,3 +39,5 @@ To run using hostapd config file in host machine file /etc/sbc_probe/hotspot/hos
 docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
 ```
 
+<!-- Link list -->
+[main_index]: https://github.com/wifinigel/sbc_network_probe/blob/main/README.md
