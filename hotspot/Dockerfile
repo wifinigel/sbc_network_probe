@@ -2,16 +2,16 @@
 # with dhcp, NAT & forwarding to eth0 
 FROM alpine:3.12
 
-LABEL "maintainer"="wifinigel@gmail.com"
-LABEL "version"= "0.1"
-LABEL "docmentation"="https://github.com/wifinigel/sbc_network_probe/hotspot"
+LABEL maintainer="wifinigel@gmail.com" \
+      version="0.01" \
+      documentation="https://github.com/wifinigel/sbc_network_probe/hotspot"
 
-RUN apk update && apk add hostapd dhcp tini iw iptables
-RUN rm /var/cache/apk/*
+RUN apk update && apk add hostapd dhcp tini iw iptables \
+    && rm /var/cache/apk/*
 
 ADD . .
-RUN mkdir -p /etc/sbc_probe/hotspot
-RUN chmod +x /launchpoint.sh
+RUN mkdir -p /etc/sbc_probe/hotspot \
+    && chmod +x /launchpoint.sh
 
 # Add Tini to process signals
 ENTRYPOINT ["/sbin/tini", "-v", "--"]

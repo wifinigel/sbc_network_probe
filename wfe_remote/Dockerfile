@@ -2,7 +2,7 @@
 FROM python:3.8-alpine
 
 LABEL maintainer="wifinigel@gmail.com" \
-      version="0.1" \
+      version="0.01" \
       documentation="https://github.com/wifinigel/sbc_network_probe/wfe_remote"
 
 RUN apk update && apk add iw wget iproute2 \
