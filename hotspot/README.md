@@ -39,5 +39,10 @@ To run using hostapd config file in host machine file /etc/sbc_probe/hotspot/hos
 docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
 ```
 
+## GitHub Repo
+
+More info at the GitHub Repo : [here][github_repo]
+
 <!-- Link list -->
 [main_index]: https://github.com/wifinigel/sbc_network_probe/blob/main/README.md
+[github_repo]: https://github.com/wifinigel/sbc_network_probe

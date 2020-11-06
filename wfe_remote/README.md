@@ -41,5 +41,10 @@ docker run -d -it --rm --net host --privileged --name wifiexplorer-sensor sbcpro
 docker run -d -it --restart always --net host --privileged --name wifiexplorer-sensor sbcprobe/wfe_remote:latest
 ```
 
+## GitHub Repo
+
+More info at the GitHub Repo : [here][github_repo]
+
 <!-- Link list -->
 [main_index]: https://github.com/wifinigel/sbc_network_probe/blob/main/README.md
+[github_repo]: https://github.com/wifinigel/sbc_network_probe

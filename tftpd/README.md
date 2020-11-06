@@ -41,5 +41,10 @@ Once the container is running, files may be uploaded and downloaded via the `/tm
 
 __Remember:__ tftp is insecure and should only be used in protected environments and for brief/trivial activities (e.g. lab work)
 
+## GitHub Repo
+
+More info at the GitHub Repo : [here][github_repo]
+
 <!-- Link list -->
 [main_index]: https://github.com/wifinigel/sbc_network_probe/blob/main/README.md
+[github_repo]: https://github.com/wifinigel/sbc_network_probe
