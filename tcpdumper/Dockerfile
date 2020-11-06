@@ -33,5 +33,5 @@ CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
 # git clone https://github.com/wifinigel/sbc_network_probe.git
 # cd tcpdumper
 # docker build -t sbcprobe/tcpdumper .
-# docker run -d --net host --privileged --name tcpdumper sbcprobe/tcpdumper
-# docker run -d --net host --privileged --restart always --name tcpdumper sbcprobe/tcpdumper
+# docker run -d --net host --privileged --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
+# docker run -d --net host --privileged --restart always --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper

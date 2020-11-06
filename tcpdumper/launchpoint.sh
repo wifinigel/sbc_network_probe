@@ -10,7 +10,12 @@ main () {
 
     # create our ssh user account & set pwd
     adduser -D -s /bin/bash tcpdumper
-    echo "tcpdumper:framedecode" | chpasswd && \
+
+    if [ -z "${SSH_PWD}" ]; then
+        SSH_PWD="ahf34A#BiDPEaerMf6r5j%8JnhO&k"
+    fi
+
+    echo "tcpdumper:${SSH_PWD}" | chpasswd && \
     
     # add in some sym links to support various tools that expect these utils
     # to be in diff locations
