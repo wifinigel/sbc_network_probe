@@ -11,7 +11,7 @@ At any time, the SBC can run one persona, as provided by an easily obtainable co
 ## Supported Platforms
 ![Neo3 Image](neo3.jpg)
 
-As this project is still in its infancy, only one low cost SBC has been tested to date: the [Friendly Elec NEO3-LTS][neo3]. Theoretically, any similar Arm64 SNC running Ubuntu 20.04 will likely work fine with the containers provided in this project.
+As this project is still in its infancy, only one low cost SBC has been tested to date: the [Friendly Elec NEO3-LTS][neo3]. Theoretically, any similar Arm64 SBC running Ubuntu 20.04 will likely work fine with the containers provided in this project.
 
 Here is a basic build guide for the Neo3 to be used for the SBC probe project: [link][neo3_build]
 

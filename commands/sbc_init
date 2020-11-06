@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# script to clear out all containers & images
+echo "Running command to clear out all existing containers and images - all data will be lost!!!"
+read -p "Are you sure? (Y/N)" -n 1 -r
+echo 
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    exit 1
+fi
+
+echo "Clearing containers..."
+docker container rm -f $(docker container ls -aq)
+
+echo "Clearing images..."
+docker rmi -f $(docker images -q)

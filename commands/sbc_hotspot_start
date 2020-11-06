@@ -10,4 +10,4 @@ then
     exit 1
 fi
 
-docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
+docker run -d -i -t --restart always --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
