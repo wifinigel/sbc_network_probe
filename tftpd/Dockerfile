@@ -19,4 +19,4 @@ ENTRYPOINT [ "in.tftpd", "--foreground", "--create", "--secure", "/tmp"]
 # git clone https://github.com/wifinigel/sbc_network_probe.git
 # cd tftpd
 # docker build -t sbcprobe/tftpd .
-# docker run -d -i -t  -p 69:69/udp  -v /tmp:/tmp:rw --name tftpd sbcprobe/tftpd:latest
+# docker run -d -i -t --restart always -p 69:69/udp  -v /tmp:/tmp:rw --name tftpd sbcprobe/tftpd:latest

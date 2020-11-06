@@ -13,7 +13,7 @@ Also, connect eth0 to an Internet connected Ethernet switch port, and insert a w
 On a host machine simply enter this command:
 
 ```
-docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
+docker run -d -i -t --restart always --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
 ```
 
 ## Build Your Own Image From the Dockerfile
@@ -30,13 +30,13 @@ docker build -t sbcprobe/hotspot .
 To run with default SSID & password:
 
 ```
-docker run -d -i -t  --rm --net host --privileged --name hotspot sbcprobe/hotspot:latest
+docker run -d -i -t --restart always --rm --net host --privileged --name hotspot sbcprobe/hotspot:latest
 ```
 
 To run using hostapd config file in host machine file /etc/sbc_probe/hotspot/hostapd.conf:
 
 ```
-docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
+docker run -d -i -t --restart always --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
 ```
 
 ## GitHub Repo

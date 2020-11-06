@@ -25,4 +25,4 @@ ENTRYPOINT [ "python", "/usr/local/bin/wifiexplorer-sensor",  "wlan0",  ">", "/t
 # git clone https://github.com/wifinigel/sbc_network_probe.git
 # cd wfe_remote
 # docker build -t sbcprobe/wfe_remote .
-# docker run -d -it --net host --privileged --name wifiexplorer-sensor sbcprobe/wfe_remote:latest
+# docker run -d -it --restart always --net host --privileged --name wifiexplorer-sensor sbcprobe/wfe_remote:latest

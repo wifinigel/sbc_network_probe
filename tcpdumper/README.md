@@ -41,7 +41,7 @@ To run the built container use one of these commands:
 
 ```
 # container not peristent (disappears on reboot or container stop)
-docker run -d --net host --privileged --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
+docker run -d --rm --net host --privileged --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
 
 # container starts automatically & persists(always started on reboot/power-up)
 docker run -d --net host --privileged --restart always --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
@@ -57,7 +57,7 @@ SSH login details:
 
 Set the password on the command line with the docker run command using the "-e SSH_PWD" option:
 ```
-docker run -d --net host --privileged --name tcpdumper -e SSH_PWD=ComplexPassword sbcprobe/tcpdumper
+docker run -d --restart always --net host --privileged --name tcpdumper -e SSH_PWD=ComplexPassword sbcprobe/tcpdumper
 ```
 
 ## GitHub Repo
