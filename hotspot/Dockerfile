@@ -1,5 +1,6 @@
-# Image that creates a temporary hotspot
-# with dhcp, NAT & forwarding to eth0 
+# Image: sbcprobe/hotspot
+# Image that creates a temporary hotspot with dhcp, NAT & forwarding to eth0
+
 FROM alpine:3.12
 
 LABEL maintainer="wifinigel@gmail.com" \
@@ -21,6 +22,8 @@ CMD ["/launchpoint.sh"]
 # https://fwhibbit.es/en/automatic-access-point-with-docker-and-raspberry-pi-zero-w
 #
 # Usage:
+# git clone https://github.com/wifinigel/sbc_network_probe.git
+# cd hotspot
 # docker build -t sbcprobe/hotspot .
 # docker run -d -i -t  --rm --net host --privileged --name hotspot sbcprobe/hotspot:latest
 # docker run -d -i -t  --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest

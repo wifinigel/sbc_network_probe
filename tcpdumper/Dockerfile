@@ -1,4 +1,11 @@
+# Image: sbcprobe/tcpdumper
+# A docker image to run an ssh server and provide a number of commands to allow remote wireless capture
+
 FROM alpine:3.12
+
+LABEL maintainer="wifinigel@gmail.com" \
+      version="0.01" \
+      documentation="https://github.com/wifinigel/sbc_network_probe/tcpdumper"
 
 RUN apk update && \
     apk add openssh-server bash augeas tcpdump iw sudo wireless-tools && \
@@ -15,7 +22,7 @@ CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
 
 # A docker image to run an ssh server and provide a number of commands to 
 # allow remote wireless capture. It uses simple password-based authentication.
-# An SSH session allows a stream of frame capture data (gathered by tcp dump)
+# An SSH session allows a stream of frame capture data (gathered by tcpdump)
 # to be streamed back for tools such as Wireshark and WinFi  
 #
 # This Dockerfile is heavily influenced by the amazing work done for the 

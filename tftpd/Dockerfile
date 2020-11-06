@@ -1,4 +1,6 @@
+# Image: sbcprobe/tftpd
 # Image that creates a tftfd server with rw access to allow uploads in addition to downloads
+
 FROM alpine:3.12
 
 LABEL maintainer="wifinigel@gmail.com" \
@@ -14,5 +16,7 @@ ENTRYPOINT [ "in.tftpd", "--foreground", "--create", "--secure", "/tmp"]
 
 #
 # Usage:
+# git clone https://github.com/wifinigel/sbc_network_probe.git
+# cd tftpd
 # docker build -t sbcprobe/tftpd .
 # docker run -d -i -t  -p 69:69/udp  -v /tmp:/tmp:rw --name tftpd sbcprobe/tftpd:latest

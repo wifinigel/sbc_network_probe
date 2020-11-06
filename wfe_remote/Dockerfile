@@ -1,4 +1,6 @@
+# Image: sbcprobe/wfe_remote
 # Image that creates a WifiExplorer remote sensor
+
 FROM python:3.8-alpine
 
 LABEL maintainer="wifinigel@gmail.com" \
@@ -20,5 +22,7 @@ ENTRYPOINT [ "python", "/usr/local/bin/wifiexplorer-sensor",  "wlan0",  ">", "/t
 # Check out his fantastic wireless products at: https://www.intuitibits.com/products/wifi-explorer-pro/
 #
 # Usage:
+# git clone https://github.com/wifinigel/sbc_network_probe.git
+# cd wfe_remote
 # docker build -t sbcprobe/wfe_remote .
 # docker run -d -it --net host --privileged --name wifiexplorer-sensor sbcprobe/wfe_remote:latest
