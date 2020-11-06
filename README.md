@@ -8,6 +8,8 @@ After recently learning about the power of containers and Docker, I decided to t
 
 At any time, the SBC can run one persona, as provided by an easily obtainable container. This can be swapped out for another persona at a later time when a different feature is required. For example, the SBC may be configured as a wireless hotspot for one activity, then reconfigured as a TFTP server for a later activity - all achieved by swapping containers in and out as required.
 
+The containers are run on a docker host, which in my case is a Ubuntu 20.04 image that is built using the instructions provided below. The image only needs to be built once. The containers are then installed and removed as required to provide the required network utilities.
+
 ## Supported Platforms
 ![Neo3 Image](neo3.jpg)
 
