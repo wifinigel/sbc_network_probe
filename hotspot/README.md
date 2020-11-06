@@ -10,7 +10,7 @@ Also, connect eth0 to an Internet connected Ethernet switch port, and insert a w
 
 ## Pull & Run From Dockerhub
 
-On a host machine simply enter this command:
+On a host machine enter this command:
 
 ```
 docker run -d -i -t --restart always --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
