@@ -4,7 +4,7 @@
 FROM alpine:3.12
 
 LABEL maintainer="wifinigel@gmail.com" \
-      version="0.01" \
+      version="0.02" \
       documentation="https://github.com/wifinigel/sbc_network_probe/tcpdumper"
 
 RUN apk update && \

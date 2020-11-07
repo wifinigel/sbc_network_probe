@@ -8,29 +8,36 @@ DAEMON=sshd
 
 main () {
 
-    # create our ssh user account & set pwd
-    adduser -D -s /bin/bash tcpdumper
+    # after container creation, tcpdumper user will exist
+    # and no need to complete these actions
+    if id tcpdumper > /dev/null 2>&1 ; then
 
-    if [ -z "${SSH_PWD}" ]; then
-        SSH_PWD="ahf34A#BiDPEaerMf6r5j%8JnhO&k"
+        echo "tcpdumper account already exists, bypassing account setup."
+    else
+        # create our ssh user account & set pwd
+        adduser -D -s /bin/bash tcpdumper
+
+        if [ -z "${SSH_PWD}" ]; then
+            SSH_PWD="ahf34A#BiDPEaerMf6r5j%8JnhO&k"
+        fi
+
+        echo "tcpdumper:${SSH_PWD}" | chpasswd && \
+        
+        # add in some sym links to support various tools that expect these utils
+        # to be in diff locations
+        ln -s /usr/sbin/iw /sbin/iw && \
+        ln -s /usr/sbin/iwconfig /sbin/iwconfig && \
+        ln -s /bin/date /usr/bin/date &&\
+
+        # ensure ssh account has sudo/no_pw access to important utils
+        echo "tcpdumper ALL = (root) NOPASSWD: /sbin/ifconfig, /usr/sbin/tcpdump, /usr/sbin/iw, /sbin/iw, /usr/sbin/iwconfig, /sbin/iwconfig, /bin/date, /usr/bin/date" >> /etc/sudoers && \
+
+        # run ssh server on port 8022 to avoid conflict with host
+        echo -e "Port 8022\n" >> /etc/ssh/sshd_config && \
+
+        # Provide support for legacy key exchange for Wireshark SSHDump
+        printf "#Legacy changes \nKexAlgorithms +diffie-hellman-group1-sha1 \nCiphers +aes128-cbc" >> /etc/ssh/sshd_config
     fi
-
-    echo "tcpdumper:${SSH_PWD}" | chpasswd && \
-    
-    # add in some sym links to support various tools that expect these utils
-    # to be in diff locations
-    ln -s /usr/sbin/iw /sbin/iw && \
-    ln -s /usr/sbin/iwconfig /sbin/iwconfig && \
-    ln -s /bin/date /usr/bin/date &&\
-
-    # ensure ssh account has sudo/no_pw access to important utils
-    echo "tcpdumper ALL = (root) NOPASSWD: /sbin/ifconfig, /usr/sbin/tcpdump, /usr/sbin/iw, /sbin/iw, /usr/sbin/iwconfig, /sbin/iwconfig, /bin/date, /usr/bin/date" >> /etc/sudoers && \
-
-    # run ssh server on port 8022 to avoid conflict with host
-    echo -e "Port 8022\n" >> /etc/ssh/sshd_config && \
-
-    # Provide support for legacy key exchange for Wireshark SSHDump
-    printf "#Legacy changes \nKexAlgorithms +diffie-hellman-group1-sha1 \nCiphers +aes128-cbc" >> /etc/ssh/sshd_config
 
     # Generate Host keys, if required
     if ls /etc/ssh/keys/ssh_host_* 1> /dev/null 2>&1; then
