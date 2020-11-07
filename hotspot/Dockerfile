@@ -25,5 +25,5 @@ CMD ["/launchpoint.sh"]
 # git clone https://github.com/wifinigel/sbc_network_probe.git
 # cd hotspot
 # docker build -t sbcprobe/hotspot .
-# docker run -d -i -t --restart always --rm --net host --privileged --name hotspot sbcprobe/hotspot:latest
-# docker run -d -i -t --restart always --rm --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
+# docker run -d -i -t --restart always --net host --privileged --name hotspot sbcprobe/hotspot:latest
+# docker run -d -i -t --restart always --net host -v /etc/sbc_probe/hotspot:/etc/sbc_probe/hotspot:ro --privileged --name hotspot sbcprobe/hotspot:latest
