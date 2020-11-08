@@ -13,7 +13,7 @@ Also, connect eth0 to an Ethernet switch port that will supply an IP address via
 On a host machine enter this command:
 
 ```
-docker run -d -i -t --restart always -p 69:69/udp  -v /tmp:/tmp:rw --name tftpd sbcprobe/tftpd:latest
+docker run -d -i -t --restart always -p 69:69/udp  -v /var/tftpboot:/var/tftpboot:rw --name tftpd sbcprobe/tftpd:latest
 ```
 
 ## Build Your Own Image From the Dockerfile
@@ -30,7 +30,7 @@ docker build -t sbcprobe/tftpd .
 To run the built container use the following command:
 
 ```
-# docker run -d -i -t --restart always -p 69:69/udp  -v /tmp:/tmp:rw --name tftpd sbcprobe/tftpd:latest
+# docker run -d -i -t --restart always -p 69:69/udp  -v /var/tftpboot:/var/tftpboot:rw --name tftpd sbcprobe/tftpd:latest
 ```
 
 ## Using tftpd
