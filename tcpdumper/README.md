@@ -26,6 +26,8 @@ docker run -d --net host --privileged --name tcpdumper -e SSH_PWD=password1 sbcp
 docker run -d --net host --privileged --restart always --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
 ```
 
+(See *SSH Login Notes* below for more password options)
+
 ## Build Your Own Image From the Dockerfile
 
 To build the image yourself, run the following on your Docker host:
@@ -47,6 +49,8 @@ docker run -d --rm --net host --privileged --name tcpdumper -e SSH_PWD=password1
 docker run -d --net host --privileged --restart always --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
 ```
 
+(See *SSH Login Notes* below for more password options)
+
 ## SSH Login Notes
 
 SSH login details:
@@ -59,6 +63,13 @@ Set the password on the command line with the docker run command using the "-e S
 ```
 docker run -d --restart always --net host --privileged --name tcpdumper -e SSH_PWD=ComplexPassword sbcprobe/tcpdumper
 ```
+
+__*Or*,__ allow a password to be generated on startup and view it in the docker logs (only on first startup of container):
+```
+docker run -d --restart always --net host --privileged --name tcpdumper sbcprobe/tcpdumper
+docker logs tcpdumper  # (look for line with text like this: *** Randomized SSH pwd: sDyfpklnyhbT ***)
+```
+
 
 ## GitHub Repo
 

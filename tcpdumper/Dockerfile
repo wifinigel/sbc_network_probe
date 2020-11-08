@@ -4,12 +4,13 @@
 FROM alpine:3.12
 
 LABEL maintainer="wifinigel@gmail.com" \
-      version="0.02" \
+      version="0.03" \
       documentation="https://github.com/wifinigel/sbc_network_probe/tcpdumper"
 
 RUN apk update && \
     apk add openssh-server bash augeas tcpdump iw sudo wireless-tools && \
-    rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/* && \
+    touch /FIRST_RUN
 
 EXPOSE 8022
 
@@ -33,5 +34,5 @@ CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
 # git clone https://github.com/wifinigel/sbc_network_probe.git
 # cd tcpdumper
 # docker build -t sbcprobe/tcpdumper .
-# docker run -d --net host --privileged --rm --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper
+# docker run -d --net host --privileged --restart always --name tcpdumper sbcprobe/tcpdumper  (uses rnd pwd echoed in docker log)
 # docker run -d --net host --privileged --restart always --name tcpdumper -e SSH_PWD=password1 sbcprobe/tcpdumper

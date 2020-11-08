@@ -8,17 +8,15 @@ DAEMON=sshd
 
 main () {
 
-    # after container creation, tcpdumper user will exist
-    # and no need to complete these actions
-    if id tcpdumper > /dev/null 2>&1 ; then
+    # only run these actions if this is the first run of the container
+    if [ -f "/FIRST_RUN" ]; then
 
-        echo "tcpdumper account already exists, bypassing account setup."
-    else
         # create our ssh user account & set pwd
         adduser -D -s /bin/bash tcpdumper
 
         if [ -z "${SSH_PWD}" ]; then
-            SSH_PWD="ahf34A#BiDPEaerMf6r5j%8JnhO&k"
+            SSH_PWD=`tr -cd '[:alnum:]' < /dev/urandom | fold -w12 | head -n1`
+            echo "*** Randomized SSH pwd: ${SSH_PWD} ***"
         fi
 
         echo "tcpdumper:${SSH_PWD}" | chpasswd && \
@@ -37,6 +35,11 @@ main () {
 
         # Provide support for legacy key exchange for Wireshark SSHDump
         printf "#Legacy changes \nKexAlgorithms +diffie-hellman-group1-sha1 \nCiphers +aes128-cbc" >> /etc/ssh/sshd_config
+
+        # Remove FIRST_RUN file
+        rm /FIRST_RUN
+    else
+        echo "Container restarting..."
     fi
 
     # Generate Host keys, if required
