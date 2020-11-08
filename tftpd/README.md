@@ -35,7 +35,7 @@ To run the built container use the following command:
 
 ## Using tftpd
 
-Once the container is running, files may be uploaded and downloaded via the `/tmp` directory of the _host_ machine (not the container).
+Once the container is running, files may be uploaded and downloaded via the `/var/tftpboot` directory of the _host_ machine (not the container).
 
 ## Caveat
 
