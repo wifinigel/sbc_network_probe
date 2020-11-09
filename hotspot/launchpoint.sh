@@ -9,22 +9,27 @@ main() {
     rm -rf /tmp/*
     
     iptables_on
-    #sh /iptables.sh
     /sbin/ifdown wlan0
     /sbin/ifup wlan0 
     
 
     # launch hostapd
-    hostapd_proc &
+    hostapd_proc
     HOSTAPDID=$!
     echo "hostadp PID = $HOSTAPDID"
 
     # launch dhcpd
     touch /tmp/dhcpd.leases
 
-    dhcpd_proc &
+    dhcpd_proc
     DHCPDID=$!
     echo "dhcpd PID = $DHCPDID"
+
+        sleep 1
+    echo "Process list:"
+    ps -elf
+
+    echo "Started."
 
     wait $HOSTAPDID
 
@@ -43,12 +48,12 @@ function hostapd_proc () {
     fi
 
     echo File used for hostapd = $HOSTAPD_CONF
-    /usr/sbin/hostapd -i wlan0 $HOSTAPD_CONF
+    /usr/sbin/hostapd -i wlan0 $HOSTAPD_CONF &
 }
 
 # launch dhcpd
 function dhcpd_proc () {
-    /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -pf /tmp/dhcp.pid -lf /tmp/dhcpd.leases
+    /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -pf /tmp/dhcp.pid -lf /tmp/dhcpd.leases &
 }
 
 function iptables_on () {
@@ -67,6 +72,9 @@ function iptables_off () {
 # kill procs to tidy up on signal
 function tidy_up() {
     echo "Signal received, tidying up..."
+
+    echo "Process list:"
+    ps -elf
     
     echo "Killing hostapd..."
     kill $HOSTAPDID
@@ -77,9 +85,14 @@ function tidy_up() {
     echo "Restoring iptables..."
     iptables_off
 
-    echo "Bouncing wlan0..."
-    /sbin/ifdown wlan0
-    /sbin/ifup wlan0
+    echo "Taking wlan0 down..."
+    ip addr flush dev  wlan0
+    ip link set wlan0 down
+
+    echo "Summary info:"
+    sleep 1
+    ps -elf
+    ifconfig -a
 
     exit 0
 }
