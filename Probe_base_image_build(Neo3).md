@@ -74,7 +74,15 @@
 
     http://ip_address:9090/
 
-15. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
+15. Add helper scripts to make manipulating docker scripts easier:
+
+    ```
+    git clone https://github.com/wifinigel/sbc_network_probe.git
+    cd sbc_network_probe/commands
+    sh ./install.sh
+    ```
+
+16. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
     ```
     docker pull openspeedtest/latest
     docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
