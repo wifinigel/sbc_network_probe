@@ -20,7 +20,12 @@ Here is a basic build guide for the Neo3 to be used for the SBC probe project: [
 
 ### Supported Wireless Adapters
 
-Some of the functions provided by this project require wireless adapters that can support monitor mode and AP mode. Support for the modes varies from adapter to adapter, but I will provide a list of tested adapters in due course.
+Some of the functions provided by this project require wireless adapters that can support monitor mode and AP mode. Support for the modes varies from adapter to adapter and Linux adapter support is gemerally very limited.
+
+During testing with the recommend base [platform build][neo3_build], the following adapters appears to work well for all containers:
+
+* Comfast CF-912  (2 stream adapter)
+* Comfast CF-915  (1 stream adapter)
 
 ## Docker Images 
 
@@ -38,8 +43,17 @@ The following docker images are available for this project:
 * wfe_remote
     * DockerHub link: https://hub.docker.com/repository/docker/sbcprobe/wfe_remote
     * GitHub: https://github.com/wifinigel/sbc_network_probe/tree/main/wfe_remote
+* wconsole
+    * DockerHub link: https://hub.docker.com/repository/docker/sbcprobe/wconsole
+    * GitHub: https://github.com/wifinigel/sbc_network_probe/tree/main/wconsole
 
-__Note:__ After creating and using each container, it is strongly advised that you remove the container before creating another container on the same host (some containers take over the host networking and will not play nicely with other containers):
+There are other Docker images available that are not part of this project, but are useful for your test probe. Check out these other publicly available images (link below): 
+
+[Tested_containers](Tested_Containers.md)
+
+
+
+__Note:__ After creating and using each container, it is strongly advised that you remove it before creating another container on the same host (some containers take over the host networking and will not play nicely with other containers):
 
 ```
 # remove container (force removal even if running)
@@ -47,6 +61,7 @@ docker container rm -f tftpd
 docker container rm -f hotspot
 docker container rm -f tcpdumper
 docker container rm -f wfe_remote
+docker container rm -f wconsole
 ```
 
 <!-- Link list -->
