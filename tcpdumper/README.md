@@ -75,6 +75,11 @@ docker logs tcpdumper  # (look for line with text like this: *** Randomized SSH 
 
 More info at the GitHub Repo : [here][github_repo]
 
+## Credits
+
+This Dockerfile is heavily influenced by the amazing work done for the project: panubo/sshd (https://github.com/panubo/docker-sshd). The quality
+of the work put in to that project is superb. Thanks for sharing. 
+
 <!-- Link list -->
 [main_index]: https://github.com/wifinigel/sbc_network_probe/blob/main/README.md
 [github_repo]: https://github.com/wifinigel/sbc_network_probe
