@@ -20,9 +20,9 @@ Here is a basic build guide for the Neo3 to be used for the SBC probe project: [
 
 ### Supported Wireless Adapters
 
-Some of the functions provided by this project require wireless adapters that can support monitor mode and AP mode. Support for the modes varies from adapter to adapter and Linux adapter support is gemerally very limited.
+Some of the functions provided by this project require wireless adapters that can support monitor mode and AP mode. Support for adapter modes varies between adapters (primarily determined by their wireless chipset). Unfortunately Linux adapter support is generally very limited and/or variable when looking for advanced features such as monitor mode and frame injection.
 
-During testing with the recommend base [platform build][neo3_build], the following adapters appears to work well for all containers:
+During testing with the recommended base [platform build][neo3_build], the following adapters appear to work well for all containers (this list will hopefully become refined over time):
 
 * Comfast CF-912  (2 stream adapter)
 * Comfast CF-915  (1 stream adapter)
