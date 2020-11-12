@@ -27,7 +27,7 @@
 8. Create a Linux group for docker and add your everyday user to the group. This ensures that docker commands can be executed by your everyday user and avoid using the root user for executing docker commands:
     ```
     sudo groupadd docker
-    sudo usermod -aG docker dockeruser
+    sudo usermod -aG docker <everyday account name (e.g. dockeruser)>
     ```
 
 9. Drop the SSH session and establish a new session using the new username.
@@ -37,7 +37,7 @@
     a. Create a static config file to ensure eth0 gets an IP address from DHCP
 
     ```
-    sudo sh -c "printf '\n\nallow-hotplug eth0 \niface eth0 inet dhcp\n' >> /etc/network/interfaces"
+    sudo sh -c "printf '\n\nallow-hotplug eth0 \nauto eth0\niface eth0 inet dhcp\n' >> /etc/network/interfaces"
     ```
 
     b. Disable NetworkManager
@@ -84,7 +84,6 @@
 
 16. To add a test container, on the CLI of the probe, execute the following commands to load up an Openspeedtest container:
     ```
-    docker pull openspeedtest/latest
     docker run --restart=unless-stopped --name=openspeedtest -d -p 80:8080 openspeedtest/latest
     ```
     (Check in Containers section of Cockpit - new openspeedtest container now available)
