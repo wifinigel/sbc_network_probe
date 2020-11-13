@@ -51,8 +51,6 @@ There are other Docker images available that are not part of this project, but a
 
 [Tested_containers](Tested_Containers.md)
 
-
-
 __Note:__ After creating and using each container, it is strongly advised that you remove it before creating another container on the same host (some containers take over the host networking and will not play nicely with other containers):
 
 ```
@@ -64,6 +62,11 @@ docker container rm -f wfe_remote
 docker container rm -f wconsole
 ```
 
+## Support Scripts
+
+A number of support scripts have been provided to make the process of creating and removing containers a little easier. Please check out the following [commands list][commands].
+
 <!-- Link list -->
 [neo3]: https://www.friendlyarm.com/index.php?route=product/product&product_id=279
 [neo3_build]: https://github.com/wifinigel/sbc_network_probe/blob/main/Probe_base_image_build(Neo3).md
+[commands]: commands/README.md
